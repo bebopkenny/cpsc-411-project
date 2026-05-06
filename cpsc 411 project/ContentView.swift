@@ -1,21 +1,10 @@
-//
-//  ContentView.swift
-//  cpsc 411 project
-//
-//  Created by csuftitan on 5/3/26.
-//
-
 import SwiftUI
 
 struct ContentView: View {
+    @StateObject var store = NoteStore()
+
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
-        }
-        .padding()
+        Text("Jot")
     }
 }
 
