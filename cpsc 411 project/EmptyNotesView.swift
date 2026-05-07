@@ -7,8 +7,8 @@ import SwiftUI
 
 struct EmptyNotesView: View {
     var body: some View {
-        // VStack stacks views from top to bottom
         VStack(spacing: 16) {
+            Spacer()
             Image(systemName: "note.text")
                 .font(.system(size: 60))
                 .foregroundColor(.gray)
@@ -17,12 +17,14 @@ struct EmptyNotesView: View {
                 .font(.title2)
                 .fontWeight(.semibold)
 
-            // smaller hint text below the title
-            Text("Tap the plus button to make your first note")
+            Text("Tap the pencil button to make your first note")
                 .font(.subheadline)
                 .foregroundColor(.gray)
+                .multilineTextAlignment(.center)
+                .padding(.horizontal)
+            Spacer()
         }
-        .padding()
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
 }
 

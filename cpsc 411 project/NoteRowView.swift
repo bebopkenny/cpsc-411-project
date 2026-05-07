@@ -11,30 +11,22 @@ struct NoteRowView: View {
     let note: Note
 
     var body: some View {
-        // VStack puts the title above the second row of info
         VStack(alignment: .leading, spacing: 4) {
-            // the note title in a bold style
-            Text(note.title)
-                .font(.headline)
-
-            // HStack puts the body preview on the left and the date on the right
             HStack {
-                // a short preview of the note body
-                Text(note.body)
-                    .font(.subheadline)
-                    .foregroundColor(.gray)
+                Text(note.title.isEmpty ? "New Note" : note.title)
+                    .font(.headline)
                     .lineLimit(1)
-
-                // Spacer pushes the date all the way to the right side
                 Spacer()
-
-                // the date shown in a friendly format
                 Text(formattedDate(note.date))
                     .font(.caption)
-                    .foregroundColor(.gray)
+                    .foregroundColor(.secondary)
             }
+            Text(note.body.isEmpty ? "No additional text" : note.body)
+                .font(.subheadline)
+                .foregroundColor(.secondary)
+                .lineLimit(1)
         }
-        .padding(.vertical, 4)
+        .padding(.vertical, 2)
     }
 }
 
