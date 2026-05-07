@@ -31,7 +31,7 @@ struct AboutView: View {
 
             Section(header: Text("Made by")) {
                 Text("Kenny Garcia")
-                Text("Teammate Name")
+                Text("Babiker Babiker")
             }
 
             Section(header: Text("About")) {

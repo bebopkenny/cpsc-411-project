@@ -1,16 +1,37 @@
 import Foundation
 import Combine
+import SwiftUI
 
 class NoteStore: ObservableObject {
     @Published var notes: [Note] = []
 
-    func load() {}
+    let key = "saved_notes"
 
-    func save() {}
+    func load() {
+        guard let data = UserDefaults.standard.data(forKey: key),
+              let decoded = try? JSONDecoder().decode([Note].self, from: data) else { return }
+        notes = decoded
+    }
 
-    func add(_ note: Note) {}
+    func save() {
+        guard let encoded = try? JSONEncoder().encode(notes) else { return }
+        UserDefaults.standard.set(encoded, forKey: key)
+    }
 
-    func delete(at offsets: IndexSet) {}
+    func add(_ note: Note) {
+        notes.append(note)
+        save()
+    }
 
-    func update(_ note: Note) {}
+    func delete(at offsets: IndexSet) {
+        notes.remove(atOffsets: offsets)
+        save()
+    }
+
+    func update(_ note: Note) {
+        if let index = notes.firstIndex(where: { $0.id == note.id }) {
+            notes[index] = note
+            save()
+        }
+    }
 }
