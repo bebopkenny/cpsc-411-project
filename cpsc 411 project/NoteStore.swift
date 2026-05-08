@@ -24,9 +24,8 @@ class NoteStore: ObservableObject {
         notes = decoded.sorted { $0.date > $1.date }
     }
 
-    // called after every change, sorts notes newest first then writes them to UserDefaults as JSON
+    // called after every change, writes notes to UserDefaults as JSON
     func save() {
-        notes.sort { $0.date > $1.date }
         guard let encoded = try? JSONEncoder().encode(notes) else { return }
         UserDefaults.standard.set(encoded, forKey: key)
     }

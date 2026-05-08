@@ -11,8 +11,6 @@ struct NoteDetailView: View {
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 0) {
-
-                // big bold title field at the top, just like Apple Notes
                 // onchange fires every time the user types a character and saves immediately
                 TextField("Title", text: $note.title)
                     .font(.title.bold())
@@ -32,8 +30,9 @@ struct NoteDetailView: View {
                 // split on whitespace to count words, .count on the string gives us characters
                 let words = note.body.split(whereSeparator: \.isWhitespace).count
                 let chars = note.body.count
+                let readTime = max(1, words / 200)
 
-                Text("\(words) words · \(chars) characters")
+                Text("\(readTime) min read · \(words) words · \(chars) characters")
                     .font(.caption)
                     .foregroundColor(.secondary)
                     .padding(.horizontal, 16)
