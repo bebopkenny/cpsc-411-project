@@ -10,10 +10,11 @@ class NoteStore: ObservableObject {
     func load() {
         guard let data = UserDefaults.standard.data(forKey: key),
               let decoded = try? JSONDecoder().decode([Note].self, from: data) else { return }
-        notes = decoded
+        notes = decoded.sorted { $0.date > $1.date }
     }
 
     func save() {
+        notes.sort { $0.date > $1.date }
         guard let encoded = try? JSONEncoder().encode(notes) else { return }
         UserDefaults.standard.set(encoded, forKey: key)
     }
@@ -30,7 +31,9 @@ class NoteStore: ObservableObject {
 
     func update(_ note: Note) {
         if let index = notes.firstIndex(where: { $0.id == note.id }) {
-            notes[index] = note
+            var updated = note
+            updated.date = Date()
+            notes[index] = updated
             save()
         }
     }
