@@ -1,19 +1,14 @@
-// DateFormatting
-// small helper file with one function called formattedDate
-// it takes a Date value and returns a nice readable string like May 6 2026
-// any view that needs to show a date can call this function
-// keeping it in one file means we only have to change the format in one place
-
+// foundation gives us Date and DateFormatter
 import Foundation
 
-// turns a Date into a short readable string
+// small helper that turns a Date into a readable string like "May 6 2026"
+// any view that needs to show a date calls this instead of formatting it themselves
 func formattedDate(_ date: Date) -> String {
-    // a DateFormatter is the Apple class that knows how to turn dates into strings
+    // DateFormatter is the apple class that knows how to convert dates into strings
     let formatter = DateFormatter()
-    // medium style gives us something like May 6 2026
+    // medium style gives us something like "May 6 2026", not too long and not too short
     formatter.dateStyle = .medium
-    // we do not want the time of day in the string
+    // we don't want the time of day in the string, just the date
     formatter.timeStyle = .none
-    // ask the formatter to do the conversion and return the result
     return formatter.string(from: date)
 }

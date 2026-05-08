@@ -1,13 +1,11 @@
-// AboutView
-// shows basic info about the app like name, version, class, and team members
-// uses a Form so it looks like a normal settings page on iOS
-// will be reached from a toolbar link in ContentView once that gets wired up
-
+// SwiftUI gives us all the views used here
 import SwiftUI
 
+// aboutview shows basic info about the app like the name, version, class, and team members
+// uses a Form so it looks like a normal settings page on iOS
 struct AboutView: View {
     var body: some View {
-        // Form makes the grouped row look like the Settings app
+        // Form groups rows into sections, same look as the iOS Settings app
         Form {
             Section(header: Text("App")) {
                 HStack {
@@ -16,7 +14,6 @@ struct AboutView: View {
                     Text("Jot")
                         .foregroundColor(.gray)
                 }
-
                 HStack {
                     Text("Version")
                     Spacer()
@@ -39,11 +36,5 @@ struct AboutView: View {
             }
         }
         .navigationTitle("About")
-    }
-}
-
-#Preview {
-    NavigationStack {
-        AboutView()
     }
 }
